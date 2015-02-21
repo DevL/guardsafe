@@ -42,3 +42,7 @@ iex(1)> h Guardsafe.divisible_by?
 
 Expands divisible_by?(number, divisor) into rem(number, divisor) == 0
 ```
+
+## Available macros
+
+* `divisible_by?/2` - checks whether two integers are evenly divisible.
