@@ -4,7 +4,9 @@ defmodule Guardsafe.Mixfile do
   def project do
     [
       app: :guardsafe,
-      version: "0.1.0",
+      version: "0.2.0",
+      name: "Guardsafe",
+      source_url: "https://github.com/magplus/guardsafe",
       elixir: "~> 1.0",
       deps: deps,
       description: description,
@@ -12,11 +14,8 @@ defmodule Guardsafe.Mixfile do
     ]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger]]
+    [applications: []]
   end
 
   defp description do
@@ -34,16 +33,11 @@ defmodule Guardsafe.Mixfile do
     ]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type `mix help deps` for more examples and options
   defp deps do
-    [{:inch_ex, only: :docs}]
+    [
+      {:earmark, "~> 0.1", only: :dev},
+      {:ex_doc, "~> 0.7", only: :dev},
+      {:inch_ex, only: :docs}
+    ]
   end
 end

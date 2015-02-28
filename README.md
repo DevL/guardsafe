@@ -11,7 +11,7 @@ Macros expanding into code that can be safely used in guard clauses.
 Update your `mix.exs` file and run `mix deps.get`.
 ```elixir
 defp deps do
-  [{:guardsafe, "~> 0.1.0"}]
+  [{:guardsafe, "~> 0.2.0"}]
 end
 ```
 
@@ -46,3 +46,7 @@ Expands divisible_by?(number, divisor) into rem(number, divisor) == 0
 ## Available macros
 
 * `divisible_by?/2` - checks whether two integers are evenly divisible.
+
+## Online documentation
+
+For more information, see [the full documentation](http://hexdocs.pm/guardsafe/).
