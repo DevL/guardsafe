@@ -25,6 +25,9 @@ defmodule GuardsafeTest do
     def using_float?(term) when float?(term), do: true
     def using_float?(term) when not float?(term), do: false
 
+    def using_function?(term) when function?(term), do: true
+    def using_function?(term) when not function?(term), do: false
+
     def using_list?(term) when list?(term), do: true
     def using_list?(term) when not list?(term), do: false
 
@@ -82,6 +85,11 @@ defmodule GuardsafeTest do
   test "float?" do
     assert When.using_float?(9.0)
     refute When.using_float?(123)
+  end
+
+  test "function?" do
+    assert When.using_function?(fn -> end)
+    refute When.using_function?(:not_a_function)
   end
 
   test "integer?" do
