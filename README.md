@@ -29,6 +29,7 @@ defmodule MyOtherModule do
 
 Now go forth and make your guard clauses more readable!
 ```elixir
+def leap_year?(year) when not integer?(year), do: raise "That's not a proper year!"
 def leap_year?(year) when divisible_by?(year, 400), do: true
 def leap_year?(year) when divisible_by?(year, 100), do: false
 def leap_year?(year), do: divisible_by?(year, 4)
@@ -46,6 +47,25 @@ Expands divisible_by?(number, divisor) into rem(number, divisor) == 0
 ## Available macros
 
 * `divisible_by?/2` - checks whether two integers are evenly divisible.
+* atom?/1 - translates into is_atom/1
+* binary?/1 - translates into is_binary/1
+* bitstring?/1 - translates into is_bitstring/1
+* boolean?/1 - translates into is_boolean/1
+* float?/1 - translates into is_float/1
+* integer?/1 - translates into is_integer/1
+* list?/1 - translates into is_list/1
+* map?/1 - translates into is_map/1
+* nil?/1 - translates into is_nil/1
+* number?/1 - translates into is_number/1
+* tuple?/1 - translates into is_tuple/1
+
+## Not yet available macros
+
+* function?/1 - translates into is_function/1
+* function?/2 - translates into is_function/2
+* pid?/1 - translates into is_pid/1
+* port?/1 - translates into is_port/1
+* reference?/1 - translates into is_reference/1
 
 ## Online documentation
 
