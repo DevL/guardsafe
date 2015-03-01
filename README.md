@@ -53,6 +53,7 @@ Expands divisible_by?(number, divisor) into rem(number, divisor) == 0
 * boolean?/1 - translates into is_boolean/1
 * float?/1 - translates into is_float/1
 * function?/1 - translates into is_function/1
+* function?/2 - translates into is_function/2
 * integer?/1 - translates into is_integer/1
 * list?/1 - translates into is_list/1
 * map?/1 - translates into is_map/1
@@ -62,10 +63,6 @@ Expands divisible_by?(number, divisor) into rem(number, divisor) == 0
 * port?/1 - translates into is_port/1
 * reference?/1 - translates into is_reference/1
 * tuple?/1 - translates into is_tuple/1
-
-## Not yet available macros
-
-* function?/2 - translates into is_function/2
 
 ## Online documentation
 

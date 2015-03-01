@@ -35,5 +35,19 @@ defmodule Guardsafe do
       end
     end
   end
+
+  @doc """
+  Expands `function?(term, arity)` into `is_function(term, arity)`
+
+  ## Examples
+
+      iex> &String.to_integer/1 |> function?(2)
+      false
+  """
+  defmacro function?(term, arity) do
+    quote do
+      is_function(unquote(term), unquote(arity))
+    end
+  end
 end
 

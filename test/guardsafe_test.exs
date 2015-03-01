@@ -28,6 +28,9 @@ defmodule GuardsafeTest do
     def using_function?(term) when function?(term), do: true
     def using_function?(term) when not function?(term), do: false
 
+    def using_function_with_arity?(term) when function?(term, 1), do: true
+    def using_function_with_arity?(term) when not function?(term, 1), do: false
+
     def using_list?(term) when list?(term), do: true
     def using_list?(term) when not list?(term), do: false
 
@@ -90,6 +93,11 @@ defmodule GuardsafeTest do
   test "function?" do
     assert When.using_function?(fn -> end)
     refute When.using_function?(:not_a_function)
+  end
+
+  test "function? with arity" do
+    assert When.using_function_with_arity?(fn(_) -> end)
+    refute When.using_function_with_arity?(fn -> end)
   end
 
   test "integer?" do
