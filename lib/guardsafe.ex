@@ -17,7 +17,7 @@ defmodule Guardsafe do
     end
   end
 
-  ~w(atom binary bitstring boolean float integer list map nil number tuple)
+  ~w(atom binary bitstring boolean float integer list map nil number pid tuple)
   |> Enum.each fn(type) ->
     @predicate String.to_atom("#{type}?")
     @function String.to_atom("is_#{type}")

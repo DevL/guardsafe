@@ -57,13 +57,13 @@ Expands divisible_by?(number, divisor) into rem(number, divisor) == 0
 * map?/1 - translates into is_map/1
 * nil?/1 - translates into is_nil/1
 * number?/1 - translates into is_number/1
+* pid?/1 - translates into is_pid/1
 * tuple?/1 - translates into is_tuple/1
 
 ## Not yet available macros
 
 * function?/1 - translates into is_function/1
 * function?/2 - translates into is_function/2
-* pid?/1 - translates into is_pid/1
 * port?/1 - translates into is_port/1
 * reference?/1 - translates into is_reference/1
 

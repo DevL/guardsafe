@@ -40,6 +40,9 @@ defmodule GuardsafeTest do
     def using_number?(term) when number?(term), do: true
     def using_number?(term) when not number?(term), do: false
 
+    def using_pid?(term) when pid?(term), do: true
+    def using_pid?(term) when not pid?(term), do: false
+
     def using_tuple?(term) when tuple?(term), do: true
     def using_tuple?(term) when not tuple?(term), do: false
   end
@@ -99,6 +102,11 @@ defmodule GuardsafeTest do
     assert When.using_number?(1)
     assert When.using_number?(1.0)
     refute When.using_nil?("1")
+  end
+
+  test "pid?" do
+    assert When.using_pid?(self)
+    refute When.using_pid?("self")
   end
 
   test "tuple?" do
