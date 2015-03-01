@@ -43,6 +43,9 @@ defmodule GuardsafeTest do
     def using_pid?(term) when pid?(term), do: true
     def using_pid?(term) when not pid?(term), do: false
 
+    def using_reference?(term) when reference?(term), do: true
+    def using_reference?(term) when not reference?(term), do: false
+
     def using_tuple?(term) when tuple?(term), do: true
     def using_tuple?(term) when not tuple?(term), do: false
   end
@@ -107,6 +110,11 @@ defmodule GuardsafeTest do
   test "pid?" do
     assert When.using_pid?(self)
     refute When.using_pid?("self")
+  end
+
+  test "reference?" do
+    assert When.using_reference?(make_ref)
+    refute When.using_reference?(self)
   end
 
   test "tuple?" do
