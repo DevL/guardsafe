@@ -64,7 +64,7 @@ Expands divisible_by?(number, divisor) into rem(number, divisor) == 0
 * `reference?/1` - translates into `is_reference/1`
 * `tuple?/1` - translates into `is_tuple/1`
 
-## Why nil? and float? instead of is_nil and is_float
+### Why nil? and float? instead of is_nil and is_float
 
 While the Elixir core team thinks that `nil?` compared to `is_nil` is [an inconcistency](https://groups.google.com/forum/#!topic/elixir-lang-core/FaKJstePFV0), others, especially Rubyists, are more comfortable with the `nil?` notation.
 
