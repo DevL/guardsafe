@@ -58,6 +58,7 @@ Expands divisible_by?(number, divisor) into rem(number, divisor) == 0
 * nil?/1 - translates into is_nil/1
 * number?/1 - translates into is_number/1
 * pid?/1 - translates into is_pid/1
+* port?/1 - translates into is_port/1
 * reference?/1 - translates into is_reference/1
 * tuple?/1 - translates into is_tuple/1
 
@@ -65,7 +66,6 @@ Expands divisible_by?(number, divisor) into rem(number, divisor) == 0
 
 * function?/1 - translates into is_function/1
 * function?/2 - translates into is_function/2
-* port?/1 - translates into is_port/1
 
 ## Online documentation
 

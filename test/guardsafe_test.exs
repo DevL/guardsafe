@@ -43,6 +43,9 @@ defmodule GuardsafeTest do
     def using_pid?(term) when pid?(term), do: true
     def using_pid?(term) when not pid?(term), do: false
 
+    def using_port?(term) when port?(term), do: true
+    def using_port?(term) when not port?(term), do: false
+
     def using_reference?(term) when reference?(term), do: true
     def using_reference?(term) when not reference?(term), do: false
 
@@ -110,6 +113,11 @@ defmodule GuardsafeTest do
   test "pid?" do
     assert When.using_pid?(self)
     refute When.using_pid?("self")
+  end
+
+  test "port?" do
+    assert When.using_port?(hd :erlang.ports)
+    refute When.using_port?(self)
   end
 
   test "reference?" do
