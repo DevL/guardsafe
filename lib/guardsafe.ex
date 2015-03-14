@@ -8,18 +8,25 @@ defmodule Guardsafe do
 
   ## Examples
 
-      def double(number) when nil?(number), do: 0
+      defmodule MacrofyAllTheThings do
+        import Guardsafe
+        require Integer
 
-      iex> import Guardsafe
-      nil
-      iex> nil |> nil?
-      true
-      iex> [] |> tuple?
-      false
-      iex> require Integer
-      nil
-      iex> even? 2
-      true
+        def magic(number) when number |> nil? do
+          "Staring into the void..."
+        end
+
+        def magic(number) when number |> even? do
+          "That's not odd."
+        end
+
+        def magic(number) when number |> divisible_by? 5 do
+          "High five!"
+        end
+      end
+
+      iex> MacrofyAllTheThings.magic(8)
+      "That's not odd."
   """
 
   @doc """
