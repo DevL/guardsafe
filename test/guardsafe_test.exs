@@ -8,62 +8,15 @@ defmodule GuardsafeTest do
     def using_divisible_by?(number, divisor) when divisible_by?(number, divisor), do: true
     def using_divisible_by?(number, divisor) when not divisible_by?(number, divisor), do: false
 
-    def using_atom?(term) when atom?(term), do: true
-    def using_atom?(term) when not atom?(term), do: false
-
-    def using_binary?(term) when binary?(term), do: true
-    def using_binary?(term) when not binary?(term), do: false
-
-    def using_bitstring?(term) when bitstring?(term), do: true
-    def using_bitstring?(term) when not bitstring?(term), do: false
-
-    def using_boolean?(term) when boolean?(term), do: true
-    def using_boolean?(term) when not boolean?(term), do: false
-
-    def using_integer?(term) when integer?(term), do: true
-    def using_integer?(term) when not integer?(term), do: false
-
-    def using_float?(term) when float?(term), do: true
-    def using_float?(term) when not float?(term), do: false
-
-    def using_function?(term) when function?(term), do: true
-    def using_function?(term) when not function?(term), do: false
-
     def using_function_with_arity?(term) when function?(term, 1), do: true
     def using_function_with_arity?(term) when not function?(term, 1), do: false
 
-    def using_list?(term) when list?(term), do: true
-    def using_list?(term) when not list?(term), do: false
-
-    def using_list?(term) when list?(term), do: true
-    def using_list?(term) when not list?(term), do: false
-
-    def using_map?(term) when map?(term), do: true
-    def using_map?(term) when not map?(term), do: false
-
-    def using_nil?(term) when nil?(term), do: true
-    def using_nil?(term) when not nil?(term), do: false
-
-    def using_number?(term) when number?(term), do: true
-    def using_number?(term) when not number?(term), do: false
-
-    def using_pid?(term) when pid?(term), do: true
-    def using_pid?(term) when not pid?(term), do: false
-
-    def using_port?(term) when port?(term), do: true
-    def using_port?(term) when not port?(term), do: false
-
-    def using_reference?(term) when reference?(term), do: true
-    def using_reference?(term) when not reference?(term), do: false
-
-    def using_tuple?(term) when tuple?(term), do: true
-    def using_tuple?(term) when not tuple?(term), do: false
-
-    def using_even?(term) when even?(term), do: true
-    def using_even?(term) when not even?(term), do: false
-
-    def using_odd?(term) when odd?(term), do: true
-    def using_odd?(term) when not odd?(term), do: false
+    ~w(atom binary bitstring boolean integer float function list map nil number pid port reference tuple
+       even odd)
+    |> Enum.each fn(type) ->
+      def unquote(String.to_atom "using_#{type}?")(term) when unquote(String.to_atom "#{type}?")(term), do: true
+      def unquote(String.to_atom "using_#{type}?")(term) when not unquote(String.to_atom "#{type}?")(term), do: false
+    end
   end
 
   test "divisible_by?" do
