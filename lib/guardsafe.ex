@@ -10,10 +10,16 @@ defmodule Guardsafe do
 
       def double(number) when nil?(number), do: 0
 
+      iex> import Guardsafe
+      nil
       iex> nil |> nil?
       true
       iex> [] |> tuple?
       false
+      iex> require Integer
+      nil
+      iex> even? 2
+      true
   """
 
   @doc """
@@ -30,25 +36,39 @@ defmodule Guardsafe do
     end
   end
 
-  ~w(atom binary bitstring boolean float function integer list map nil number pid port reference tuple)
-  |> Enum.each fn(type) ->
-    @module Kernel
-    @predicate String.to_atom("#{type}?")
-    @function String.to_atom("is_#{type}")
-    @doc """
-    Expands `#{@predicate}(term)` into `#{@function}(term)`
+  require_warning = fn(module) ->
+    unless module == Kernel, do: "\n\nRemember to `require #{module}` before use."
+  end
 
-    ## Examples
+  generate_predicates = fn({module, types}) ->
+    @module String.to_atom "Elixir.#{module}"
+    types
+    |> Enum.each fn(type) ->
+      @predicate String.to_atom("#{type}?")
+      @function String.to_atom("is_#{type}")
 
-        iex> some_#{type}_variable |> #{@predicate}
-        true
-    """
-    defmacro unquote(@predicate)(term) do
-      quote do
-        unquote(@module) . unquote(@function)(unquote(term))
+      @doc """
+      Expands `#{@predicate}(term)` into `#{module}.#{@function}(term)`.
+      #{require_warning.(@module)}
+
+      ## Examples
+
+          iex> some_#{type}_variable |> #{@predicate}
+          true
+      """
+      defmacro unquote(@predicate)(term) do
+        quote do
+          unquote(@module) . unquote(@function)(unquote(term))
+        end
       end
     end
   end
+
+  [
+    Kernel: ~w(atom binary bitstring boolean float function integer list map nil number pid port reference tuple),
+    Integer: ~w(even odd),
+  ]
+  |> Enum.each generate_predicates
 
   @doc """
   Expands `function?(term, arity)` into `is_function(term, arity)`

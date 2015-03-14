@@ -3,6 +3,7 @@ defmodule GuardsafeTest do
 
   defmodule When do
     import Guardsafe
+    require Integer
 
     def using_divisible_by?(number, divisor) when divisible_by?(number, divisor), do: true
     def using_divisible_by?(number, divisor) when not divisible_by?(number, divisor), do: false
@@ -57,6 +58,12 @@ defmodule GuardsafeTest do
 
     def using_tuple?(term) when tuple?(term), do: true
     def using_tuple?(term) when not tuple?(term), do: false
+
+    def using_even?(term) when even?(term), do: true
+    def using_even?(term) when not even?(term), do: false
+
+    def using_odd?(term) when odd?(term), do: true
+    def using_odd?(term) when not odd?(term), do: false
   end
 
   test "divisible_by?" do
@@ -144,5 +151,15 @@ defmodule GuardsafeTest do
   test "tuple?" do
     assert When.using_tuple?({:a, :tuple})
     refute When.using_tuple?(nil)
+  end
+
+  test "even?" do
+    assert When.using_even?(2)
+    refute When.using_even?(1)
+  end
+
+  test "odd?" do
+    assert When.using_odd?(1)
+    refute When.using_odd?(2)
   end
 end
