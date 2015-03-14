@@ -32,6 +32,7 @@ defmodule Guardsafe do
 
   ~w(atom binary bitstring boolean float function integer list map nil number pid port reference tuple)
   |> Enum.each fn(type) ->
+    @module Kernel
     @predicate String.to_atom("#{type}?")
     @function String.to_atom("is_#{type}")
     @doc """
@@ -44,7 +45,7 @@ defmodule Guardsafe do
     """
     defmacro unquote(@predicate)(term) do
       quote do
-        unquote(@function)(unquote(term))
+        unquote(@module) . unquote(@function)(unquote(term))
       end
     end
   end
