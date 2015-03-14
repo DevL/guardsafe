@@ -1,6 +1,19 @@
 defmodule Guardsafe do
+  @vsn "0.3.0-pre"
+  @doc false
+  def version, do: @vsn
+
   @moduledoc """
   Provides readability-enhancing macros that can safely be used in guard clauses.
+
+  ## Examples
+
+      def double(number) when nil?(number), do: 0
+
+      iex> nil |> nil?
+      true
+      iex> [] |> tuple?
+      false
   """
 
   @doc """
@@ -50,4 +63,3 @@ defmodule Guardsafe do
     end
   end
 end
-
