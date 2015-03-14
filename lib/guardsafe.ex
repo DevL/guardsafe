@@ -1,5 +1,5 @@
 defmodule Guardsafe do
-  @vsn "0.3.0-pre"
+  @vsn "0.3.0"
   @doc false
   def version, do: @vsn
 

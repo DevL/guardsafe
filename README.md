@@ -11,7 +11,7 @@ Macros expanding into code that can be safely used in guard clauses.
 Update your `mix.exs` file and run `mix deps.get`.
 ```elixir
 defp deps do
-  [{:guardsafe, "~> 0.2.0"}]
+  [{:guardsafe, "~> 0.3.0"}]
 end
 ```
 
@@ -46,23 +46,33 @@ Expands divisible_by?(number, divisor) into rem(number, divisor) == 0
 
 ## Available macros
 
+**NB:** If a macro is translated into a function residing in another module
+than `Kernel` you need to require it before use, e.g. `require Integer`.
+
+#### Expressive calculations
 * `divisible_by?/2` - checks whether two integers are evenly divisible.
-* `atom?/1` - translates into `is_atom/1`
-* `binary?/1` - translates into `is_binary/1`
-* `bitstring?/1` - translates into `is_bitstring/1`
-* `boolean?/1` - translates into `is_boolean/1`
-* `float?/1` - translates into `is_float/1`
-* `function?/1` - translates into `is_function/1`
-* `function?/2` - translates into `is_function/2`
-* `integer?/1` - translates into `is_integer/1`
-* `list?/1` - translates into `is_list/1`
-* `map?/1` - translates into `is_map/1`
-* `nil?/1` - translates into `is_nil/1`
-* `number?/1` - translates into `is_number/1`
-* `pid?/1` - translates into `is_pid/1`
-* `port?/1` - translates into `is_port/1`
-* `reference?/1` - translates into `is_reference/1`
-* `tuple?/1` - translates into `is_tuple/1`
+
+#### Macros for checking types
+* `atom?/1` - translates into `Kernel.is_atom/1`
+* `binary?/1` - translates into `Kernel.is_binary/1`
+* `bitstring?/1` - translates into `Kernel.is_bitstring/1`
+* `boolean?/1` - translates into `Kernel.is_boolean/1`
+* `float?/1` - translates into `Kernel.is_float/1`
+* `function?/1` - translates into `Kernel.is_function/1`
+* `function?/2` - translates into `Kernel.is_function/2`
+* `integer?/1` - translates into `Kernel.is_integer/1`
+* `list?/1` - translates into `Kernel.is_list/1`
+* `map?/1` - translates into `Kernel.is_map/1`
+* `nil?/1` - translates into `Kernel.is_nil/1`
+* `number?/1` - translates into `Kernel.is_number/1`
+* `pid?/1` - translates into `Kernel.is_pid/1`
+* `port?/1` - translates into `Kernel.is_port/1`
+* `reference?/1` - translates into `Kernel.is_reference/1`
+* `tuple?/1` - translates into `Kernel.is_tuple/1`
+
+#### Macros for checking values
+* `even?/1` - translates into `Integer.is_even/1`
+* `odd?/1` - translates into `Integer.is_odd/1`
 
 ### Why nil? and float? instead of is_nil and is_float
 
