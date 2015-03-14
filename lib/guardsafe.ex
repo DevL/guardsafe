@@ -65,7 +65,7 @@ defmodule Guardsafe do
       """
       defmacro unquote(@predicate)(term) do
         quote do
-          unquote(@module) . unquote(@function)(unquote(term))
+          unquote(@module).unquote(@function)(unquote(term))
         end
       end
     end
