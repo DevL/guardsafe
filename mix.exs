@@ -4,7 +4,7 @@ defmodule Guardsafe.Mixfile do
   def project do
     [
       app: :guardsafe,
-      version: "0.3.0",
+      version: "0.3.1",
       name: "Guardsafe",
       source_url: "https://github.com/DevL/guardsafe",
       homepage_url: "https://hex.pm/packages/guardsafe",

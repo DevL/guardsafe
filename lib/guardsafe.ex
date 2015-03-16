@@ -1,5 +1,5 @@
 defmodule Guardsafe do
-  @vsn "0.3.0"
+  @vsn "0.3.1"
   @doc false
   def version, do: @vsn
 
@@ -28,9 +28,8 @@ defmodule Guardsafe do
       iex> MacrofyAllTheThings.magic(8)
       "That's not odd."
   """
-
   @doc """
-  Expands `divisible_by?(number, divisor)` into `rem(number, divisor) == 0`
+  Returns true if the integer number is evenly divisible by the divisor.
 
   ## Examples
 
@@ -40,6 +39,34 @@ defmodule Guardsafe do
   defmacro divisible_by?(number, divisor) do
     quote do
       rem(unquote(number), unquote(divisor)) == 0
+    end
+  end
+
+  @doc """
+  Returns true for even integers.
+
+  ## Examples
+
+      iex> even? 7
+      false
+  """
+  defmacro even?(number) do
+    quote do
+      divisible_by?(unquote(number), 2)
+    end
+  end
+
+  @doc """
+  Returns true for odd integers.
+
+  ## Examples
+
+      iex> odd? 5
+      true
+  """
+  defmacro odd?(number) do
+    quote do
+      not even?(unquote(number))
     end
   end
 
@@ -73,7 +100,6 @@ defmodule Guardsafe do
 
   [
     Kernel: ~w(atom binary bitstring boolean float function integer list map nil number pid port reference tuple),
-    Integer: ~w(even odd),
   ]
   |> Enum.each generate_predicates
 

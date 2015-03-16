@@ -11,7 +11,7 @@ Macros expanding into code that can be safely used in guard clauses.
 Update your `mix.exs` file and run `mix deps.get`.
 ```elixir
 defp deps do
-  [{:guardsafe, "~> 0.3.0"}]
+  [{:guardsafe, "~> 0.3.1"}]
 end
 ```
 
@@ -49,9 +49,6 @@ Expands divisible_by?(number, divisor) into rem(number, divisor) == 0
 **NB:** If a macro is translated into a function residing in another module
 than `Kernel` you need to require it before use, e.g. `require Integer`.
 
-#### Expressive calculations
-* `divisible_by?/2` - checks whether two integers are evenly divisible.
-
 #### Macros for checking types
 * `atom?/1` - translates into `Kernel.is_atom/1`
 * `binary?/1` - translates into `Kernel.is_binary/1`
@@ -71,8 +68,9 @@ than `Kernel` you need to require it before use, e.g. `require Integer`.
 * `tuple?/1` - translates into `Kernel.is_tuple/1`
 
 #### Macros for checking values
-* `even?/1` - translates into `Integer.is_even/1`
-* `odd?/1` - translates into `Integer.is_odd/1`
+* `divisible_by?/2` - checks whether two integers are evenly divisible.
+* `even?/1` - returns true for even integers.
+* `odd?/1` - returns true for odd integers.
 
 ### Why nil? and float? instead of is_nil and is_float
 
