@@ -11,7 +11,7 @@ Macros expanding into code that can be safely used in guard clauses.
 Update your `mix.exs` file and run `mix deps.get`.
 ```elixir
 defp deps do
-  [{:guardsafe, "~> 0.3.1"}]
+  [{:guardsafe, "~> 0.4.0"}]
 end
 ```
 
@@ -71,6 +71,14 @@ than `Kernel` you need to require it before use, e.g. `require Integer`.
 * `divisible_by?/2` - checks whether two integers are evenly divisible.
 * `even?/1` - returns true for even integers.
 * `odd?/1` - returns true for odd integers.
+* `within?/3` - checks whether a value is in the range of the last two arguments.
+
+#### Macros for dates and times
+* `date?/1` - checks if the term is an Erlang-style date tuple.
+* `datetime?/1` - checks if the term is an Erlang-style datetime tuple.
+* `time?/1` - checks if the term is an Erlang-style time tuple.
+
+_These can come in handy when working with a library such as [GoodTimes](https://github.com/magplus/good_times)._
 
 ### Why nil? and float? instead of is_nil and is_float
 
