@@ -11,8 +11,12 @@ defmodule GuardsafeTest do
     def using_function_with_arity?(term) when function?(term, 1), do: true
     def using_function_with_arity?(term) when not function?(term, 1), do: false
 
+    def using_within?(number, low, high) when within?(number, low, high), do: true
+    def using_within?(number, low, high) when not within?(number, low, high), do: false
+
     ~w(atom binary bitstring boolean integer float function list map nil number pid port reference tuple
-       even odd)
+       even odd
+       date datetime time)
     |> Enum.each fn(type) ->
       def unquote(String.to_atom "using_#{type}?")(term) when unquote(String.to_atom "#{type}?")(term), do: true
       def unquote(String.to_atom "using_#{type}?")(term) when not unquote(String.to_atom "#{type}?")(term), do: false
@@ -114,5 +118,39 @@ defmodule GuardsafeTest do
   test "odd?" do
     assert When.using_odd?(1)
     refute When.using_odd?(2)
+  end
+
+  test "within?" do
+    assert When.using_within?(1, 1, 5)
+    refute When.using_within?(0, 1, 5)
+    assert When.using_within?(5, 1, 5)
+    refute When.using_within?(6, 1, 5)
+  end
+
+  test "date?" do
+    assert When.using_date?({2015, 3, 14})
+    refute When.using_date?({2015, 3, 32})
+    refute When.using_date?({2015, 13, 14})
+    refute When.using_date?({2015, 3})
+    refute When.using_date?({{2015, 3, 14}, {21, 49, 52}})
+  end
+
+  test "time?" do
+    assert When.using_time?({0, 0, 0})
+    assert When.using_time?({23, 59, 59})
+    refute When.using_time?({23, 60, 59})
+    refute When.using_time?({23, 59, 60})
+    refute When.using_time?({24, 0, 0})
+    refute When.using_time?({-1, 0, 0})
+    refute When.using_time?({12, 15})
+    refute When.using_time?({{2015, 3, 14}, {21, 49, 52}})
+  end
+
+  test "datetime?" do
+    assert When.using_datetime?({{2015, 3, 14}, {21, 49, 52}})
+    refute When.using_datetime?({{2015, 13, 14}, {21, 49, 52}})
+    refute When.using_datetime?({{2015, 3, 14}, {23, 59, 60}})
+    refute When.using_datetime?({{2015, 3, 14}, {23, 59}})
+    refute When.using_datetime?({2015, 3, 14})
   end
 end

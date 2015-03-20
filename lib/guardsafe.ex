@@ -98,6 +98,87 @@ defmodule Guardsafe do
     end
   end
 
+  @doc """
+  Returns true if the term is between the low and high values, inclusively.
+
+  ## Examples
+
+      iex> 5 |> within? 2, 10
+      true
+  """
+  defmacro within?(term, low, high) do
+    quote do
+      unquote(low) <= unquote(term) and unquote(term) <= unquote(high)
+    end
+  end
+
+  @doc """
+  Returns true if the term is considered to be a date tuple.
+
+  The date is not checked for validity other than the months being in
+  the 1..12 range and the days being in the 1..31 range.
+
+  ## Examples
+
+      iex> 5 |> date? {2015, 3, 20}
+      true
+  """
+  defmacro date?(term) do
+    quote do
+      is_tuple(unquote(term))
+      and (tuple_size(unquote(term)) == 3)
+      and is_integer(elem(unquote(term), 0))
+      and is_integer(elem(unquote(term), 1))
+      and (elem(unquote(term), 1) |> within? 1, 12)
+      and is_integer(elem(unquote(term), 2))
+      and (elem(unquote(term), 2) |> within? 1, 31)
+    end
+  end
+
+  @doc """
+  Returns true if the term is considered to be a time tuple.
+
+  The time is not checked for validity other than the hours being in
+  the 0..23 range and the minutes and seconds being in the 0..59 range.
+
+  ## Examples
+
+      iex> 5 |> time? {15, 33, 42}
+      true
+  """
+  defmacro time?(term) do
+    quote do
+      is_tuple(unquote(term))
+      and (tuple_size(unquote(term)) == 3)
+      and is_integer(elem(unquote(term), 0))
+      and (elem(unquote(term), 0) |> within? 0, 23)
+      and is_integer(elem(unquote(term), 1))
+      and (elem(unquote(term), 1) |> within? 0, 59)
+      and is_integer(elem(unquote(term), 2))
+      and (elem(unquote(term), 2) |> within? 0, 59)
+    end
+  end
+
+  @doc """
+  Returns true if the term is considered to be a time tuple.
+
+  `date?` and `time?` are used for checking and validating the
+  date and time portions of the datetime.
+
+  ## Examples
+
+      iex> datetime? {{2015, 3, 20}, {15, 33, 42}}
+      true
+  """
+  defmacro datetime?(term) do
+    quote do
+      is_tuple(unquote(term))
+      and (tuple_size(unquote(term)) == 2)
+      and date?(elem(unquote(term), 0))
+      and time?(elem(unquote(term), 1))
+    end
+  end
+
   [
     Kernel: ~w(atom binary bitstring boolean float function integer list map nil number pid port reference tuple),
   ]
