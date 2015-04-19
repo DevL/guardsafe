@@ -79,7 +79,7 @@ than `Kernel` you need to require it before use, e.g. `require Integer`.
 * `datetime?/1` - checks if the term is an Erlang-style datetime tuple.
 * `time?/1` - checks if the term is an Erlang-style time tuple.
 
-_These can come in handy when working with a library such as [GoodTimes](https://github.com/magplus/good_times)._
+_These can come in handy when working with a library such as [GoodTimes](https://github.com/DevL/good_times)._
 
 ### Why nil? and float? instead of is_nil and is_float
 
