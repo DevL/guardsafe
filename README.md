@@ -83,8 +83,16 @@ _These can come in handy when working with a library such as [GoodTimes](https:/
 
 ### Why nil? and float? instead of is_nil and is_float
 
-While the Elixir core team thinks that `nil?` compared to `is_nil` is [an inconcistency](https://groups.google.com/forum/#!topic/elixir-lang-core/FaKJstePFV0), others, especially Rubyists, are more comfortable with the `nil?` notation.
+While the Elixir core team thinks that `nil?` compared to `is_nil` is [an inconcistency](https://groups.google.com/forum/#!topic/elixir-lang-core/FaKJstePFV0), others, especially Rubyists, might be more comfortable with the `nil?` notation. Honestly though, this is mostly intended as a display of how Elixir's metaprogramming capabilities can be used to shape the look and feel of the language itself.
 
 ## Online documentation
 
-For more information, see [the full documentation](http://hexdocs.pm/guardsafe/).
+For more information, see [the full documentation](http://hexdocs.pm/guardsafe).
+
+## Contributing
+
+1. Fork this repository
+2. Create your feature branch (`git checkout -b quis-custodiet-ipsos-custodes`)
+3. Commit your changes (`git commit -am 'Guards! Guards!'`)
+4. Push to the branch (`git push origin quis-custodiet-ipsos-custodes`)
+5. Create a new Pull Request
