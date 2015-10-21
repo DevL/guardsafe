@@ -27,7 +27,7 @@ defmodule Guardsafe.Mixfile do
 
   defp package do
     [
-      contributors: ["Lennart Fridén"],
+      maintainers: ["Lennart Fridén"],
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/DevL/guardsafe"}
@@ -37,7 +37,7 @@ defmodule Guardsafe.Mixfile do
   defp deps do
     [
       {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.7", only: :dev},
+      {:ex_doc, "~> 0.10", only: :dev},
       {:inch_ex, only: :docs}
     ]
   end
