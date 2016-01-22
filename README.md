@@ -12,7 +12,7 @@ Macros expanding into code that can be safely used in guard clauses.
 Update your `mix.exs` file and run `mix deps.get`.
 ```elixir
 defp deps do
-  [{:guardsafe, "~> 0.4.0"}]
+  [{:guardsafe, "~> 0.5.0"}]
 end
 ```
 

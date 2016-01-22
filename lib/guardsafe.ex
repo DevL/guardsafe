@@ -1,5 +1,5 @@
 defmodule Guardsafe do
-  @vsn "0.4.0"
+  @vsn "0.5.0"
   @doc false
   def version, do: @vsn
 
@@ -20,7 +20,7 @@ defmodule Guardsafe do
           "That's not odd."
         end
 
-        def magic(number) when number |> divisible_by? 5 do
+        def magic(number) when number |> divisible_by?(5) do
           "High five!"
         end
       end
@@ -33,7 +33,7 @@ defmodule Guardsafe do
 
   ## Examples
 
-      iex> 25 |> divisible_by? 5
+      iex> 25 |> divisible_by?(5)
       true
   """
   defmacro divisible_by?(number, divisor) do
@@ -77,7 +77,7 @@ defmodule Guardsafe do
   generate_predicates = fn({module, types}) ->
     @module String.to_atom "Elixir.#{module}"
     types
-    |> Enum.each fn(type) ->
+    |> Enum.each(fn(type) ->
       @predicate String.to_atom("#{type}?")
       @function String.to_atom("is_#{type}")
 
@@ -95,7 +95,7 @@ defmodule Guardsafe do
           unquote(@module).unquote(@function)(unquote(term))
         end
       end
-    end
+    end)
   end
 
   @doc """
@@ -103,7 +103,7 @@ defmodule Guardsafe do
 
   ## Examples
 
-      iex> 5 |> within? 2, 10
+      iex> 5 |> within?(2, 10)
       true
   """
   defmacro within?(term, low, high) do
@@ -120,7 +120,7 @@ defmodule Guardsafe do
 
   ## Examples
 
-      iex> 5 |> date? {2015, 3, 20}
+      iex> 5 |> date?({2015, 3, 20})
       true
   """
   defmacro date?(term) do
@@ -129,9 +129,9 @@ defmodule Guardsafe do
       and (tuple_size(unquote(term)) == 3)
       and is_integer(elem(unquote(term), 0))
       and is_integer(elem(unquote(term), 1))
-      and (elem(unquote(term), 1) |> within? 1, 12)
+      and (elem(unquote(term), 1) |> within?(1, 12))
       and is_integer(elem(unquote(term), 2))
-      and (elem(unquote(term), 2) |> within? 1, 31)
+      and (elem(unquote(term), 2) |> within?(1, 31))
     end
   end
 
@@ -143,7 +143,7 @@ defmodule Guardsafe do
 
   ## Examples
 
-      iex> 5 |> time? {15, 33, 42}
+      iex> 5 |> time?({15, 33, 42})
       true
   """
   defmacro time?(term) do
@@ -151,11 +151,11 @@ defmodule Guardsafe do
       is_tuple(unquote(term))
       and (tuple_size(unquote(term)) == 3)
       and is_integer(elem(unquote(term), 0))
-      and (elem(unquote(term), 0) |> within? 0, 23)
+      and (elem(unquote(term), 0) |> within?(0, 23))
       and is_integer(elem(unquote(term), 1))
-      and (elem(unquote(term), 1) |> within? 0, 59)
+      and (elem(unquote(term), 1) |> within?(0, 59))
       and is_integer(elem(unquote(term), 2))
-      and (elem(unquote(term), 2) |> within? 0, 59)
+      and (elem(unquote(term), 2) |> within?(0, 59))
     end
   end
 

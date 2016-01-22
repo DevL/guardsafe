@@ -4,7 +4,7 @@ defmodule Guardsafe.Mixfile do
   def project do
     [
       app: :guardsafe,
-      version: "0.4.0",
+      version: "0.5.0",
       name: "Guardsafe",
       source_url: "https://github.com/DevL/guardsafe",
       homepage_url: "https://hex.pm/packages/guardsafe",
@@ -36,9 +36,9 @@ defmodule Guardsafe.Mixfile do
 
   defp deps do
     [
-      {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.10", only: :dev},
-      {:inch_ex, only: :docs}
+      {:earmark, "~> 0.2", only: :dev},
+      {:ex_doc, "~> 0.11", only: :dev},
+      {:inch_ex, ">= 0.4.0", only: :docs}
     ]
   end
 end

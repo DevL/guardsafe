@@ -17,10 +17,10 @@ defmodule GuardsafeTest do
     ~w(atom binary bitstring boolean integer float function list map nil number pid port reference tuple
        even odd
        date datetime time)
-    |> Enum.each fn(type) ->
+    |> Enum.each(fn(type) ->
       def unquote(String.to_atom "using_#{type}?")(term) when unquote(String.to_atom "#{type}?")(term), do: true
       def unquote(String.to_atom "using_#{type}?")(term) when not unquote(String.to_atom "#{type}?")(term), do: false
-    end
+    end)
   end
 
   test "divisible_by?" do
@@ -55,13 +55,13 @@ defmodule GuardsafeTest do
   end
 
   test "function?" do
-    assert When.using_function?(fn -> end)
+    assert When.using_function?(fn -> nil end)
     refute When.using_function?(:not_a_function)
   end
 
   test "function? with arity" do
-    assert When.using_function_with_arity?(fn(_) -> end)
-    refute When.using_function_with_arity?(fn -> end)
+    assert When.using_function_with_arity?(fn(_) -> nil end)
+    refute When.using_function_with_arity?(fn -> nil end)
   end
 
   test "integer?" do
