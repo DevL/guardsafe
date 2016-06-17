@@ -182,7 +182,7 @@ defmodule Guardsafe do
   [
     Kernel: ~w(atom binary bitstring boolean float function integer list map nil number pid port reference tuple),
   ]
-  |> Enum.each generate_predicates
+  |> Enum.each(generate_predicates)
 
   @doc """
   Expands `function?(term, arity)` into `is_function(term, arity)`
