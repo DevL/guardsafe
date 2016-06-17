@@ -1,5 +1,5 @@
 defmodule Guardsafe do
-  @vsn "0.5.0"
+  @vsn "0.5.1"
   @doc false
   def version, do: @vsn
 
@@ -139,7 +139,8 @@ defmodule Guardsafe do
   Returns true if the term is considered to be a time tuple.
 
   The time is not checked for validity other than the hours being in
-  the 0..23 range and the minutes and seconds being in the 0..59 range.
+  the 0..23 range, the minutes being in the 0..59 range, and seconds
+  being in the 0..60 range. The latter due to the existance of leap seconds.
 
   ## Examples
 
@@ -155,7 +156,7 @@ defmodule Guardsafe do
       and is_integer(elem(unquote(term), 1))
       and (elem(unquote(term), 1) |> within?(0, 59))
       and is_integer(elem(unquote(term), 2))
-      and (elem(unquote(term), 2) |> within?(0, 59))
+      and (elem(unquote(term), 2) |> within?(0, 60))
     end
   end
 

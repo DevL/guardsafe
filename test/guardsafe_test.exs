@@ -138,8 +138,9 @@ defmodule GuardsafeTest do
   test "time?" do
     assert When.using_time?({0, 0, 0})
     assert When.using_time?({23, 59, 59})
+    assert When.using_time?({23, 59, 60})
     refute When.using_time?({23, 60, 59})
-    refute When.using_time?({23, 59, 60})
+    refute When.using_time?({23, 59, 61})
     refute When.using_time?({24, 0, 0})
     refute When.using_time?({-1, 0, 0})
     refute When.using_time?({12, 15})
@@ -149,7 +150,7 @@ defmodule GuardsafeTest do
   test "datetime?" do
     assert When.using_datetime?({{2015, 3, 14}, {21, 49, 52}})
     refute When.using_datetime?({{2015, 13, 14}, {21, 49, 52}})
-    refute When.using_datetime?({{2015, 3, 14}, {23, 59, 60}})
+    refute When.using_datetime?({{2015, 3, 14}, {23, 59, 61}})
     refute When.using_datetime?({{2015, 3, 14}, {23, 59}})
     refute When.using_datetime?({2015, 3, 14})
   end
