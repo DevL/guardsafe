@@ -1,5 +1,7 @@
 # Guardsafe
 
+**NB:** This repository has been moved to [https://codeberg.org/DevL/guardsafe](https://codeberg.org/DevL/guardsafe).
+
 [![Build Status](https://travis-ci.org/DevL/guardsafe.svg?branch=master)](https://travis-ci.org/DevL/guardsafe)
 [![Inline docs](http://inch-ci.org/github/DevL/guardsafe.svg?branch=master)](http://inch-ci.org/github/DevL/guardsafe)
 [![Hex.pm](https://img.shields.io/hexpm/v/guardsafe.svg)](https://hex.pm/packages/guardsafe)
